@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: employee-app
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URL
+        sync: false # You will need to provide your MongoDB connection string in the Render Dashboard

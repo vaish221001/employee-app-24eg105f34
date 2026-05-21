@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react'
 import {useNavigate} from 'react-router'
 import axios from 'axios'
+import API_BASE from '../api.js'
 
 function ListOfEmps() {
   
@@ -17,9 +18,9 @@ function ListOfEmps() {
   }
 
   const deleteEmpById=async (id)=>{
-      let res= await axios.delete(`/employee-api/employees/${id}`)
+      let res= await axios.delete(`${API_BASE}/employees/${id}`)
       if(res.status===200){
-        let resObj=await res.json()
+        let resObj=res.data
         setEmps(resObj.payload)
       }
     }
@@ -27,7 +28,7 @@ function ListOfEmps() {
   useEffect(()=>{
     //Get all emps on component loading
     async function getEmps(){
-      let res=await axios.get("/employee-api/employees")
+      let res=await axios.get(`${API_BASE}/employees`)
       if(res.status===200){
         let resObj=res.data
         setEmps(resObj.payload)

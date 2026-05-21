@@ -1,7 +1,6 @@
 import {useForm} from 'react-hook-form'
 import {useState} from 'react'
-import { useNavigate} from 'react-router'
-
+import { useNavigate} from 'react-router'import API_BASE from '../api.js'
 function CreateEmp() {
   
   const [loading,setLoading]=useState(false)
@@ -14,7 +13,7 @@ function CreateEmp() {
     try {
       setLoading(true);
       //make HTTP POST req
-      let res = await fetch("/employee-api/employees", {
+      let res = await fetch(`${API_BASE}/employees`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newEmpObj),

@@ -8,7 +8,7 @@ config()
 
 const app=exp()
 
-//Middlewares
+// Middlewares
 app.use(cors({
   origin:["http://localhost:5173"]
 }),
@@ -33,10 +33,16 @@ app.get("/{*splat}", (req, res) => {
 });
 
 const port=process.env.PORT||5000
+const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URL
+
+if (!mongoUri) {
+  console.error("Missing MongoDB connection string. Set MONGO_URI in your environment.")
+  process.exit(1)
+}
 
 async function connectDB(){
     try{
-        await connect(process.env.MONGODB_URL);
+        await connect(mongoUri);
         console.log("DB Connection success")
         //Start server
         app.listen(port,()=>console.log(`Server listening on port ${port}`))

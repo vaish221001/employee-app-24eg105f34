@@ -7,13 +7,18 @@ import cors from 'cors'
 config()
 
 const app=exp()
-const allowedOrigins = [process.env.FRONTEND_URL || "http://localhost:5173"]
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "http://localhost:5173",
+  "https://employee-app-24eg105f34.vercel.app"
+].filter(Boolean)
 
 // Middlewares
 app.use(cors({
   origin: allowedOrigins,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
 }))
 app.use(exp.json())
 

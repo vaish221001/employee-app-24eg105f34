@@ -7,12 +7,14 @@ import cors from 'cors'
 config()
 
 const app=exp()
+const allowedOrigins = [process.env.FRONTEND_URL || "http://localhost:5173"]
 
 // Middlewares
 app.use(cors({
-  origin:["http://localhost:5173"]
-}),
-)
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}))
 app.use(exp.json())
 
 //Forward requests to employeeAPI

@@ -1,6 +1,7 @@
 import {useForm} from 'react-hook-form'
 import {useState} from 'react'
-import { useNavigate} from 'react-router'import API_BASE from '../api.js'
+import { useNavigate } from 'react-router'
+import API_BASE from '../api.js'
 function CreateEmp() {
   
   const [loading,setLoading]=useState(false)

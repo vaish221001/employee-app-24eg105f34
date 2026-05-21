@@ -117,4 +117,3 @@ nodemon server.js
 
 ## Author
 
-Abhishikth Paul Ganta
